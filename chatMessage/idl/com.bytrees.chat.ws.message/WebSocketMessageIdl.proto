@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package com.bytrees.chat.ws.message;
+
+option java_outer_classname="WebSocketMessageIdl";
+
+message WebSocketMessage {
+    int64 clientId = 1; //客户端ID
+    MessageType messageType = 2; //消息类型
+    string messageContent = 3; //消息内容
+    int64 messageTimestamp = 4; //消息时间
+}
+
+enum MessageType {
+    UNKNOWN = 0;
+    STRING  = 1;
+    JSONOBJ = 2;
+}

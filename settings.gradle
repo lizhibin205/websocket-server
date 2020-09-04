@@ -1,0 +1,3 @@
+rootProject.name = 'chat'
+include 'chatServer'
+include 'chatMessage'

@@ -1,0 +1,19 @@
+task runIdl() {
+    println project.name
+
+    doFirst() {
+        println "start build all idl files..."
+        def projectName = project.name
+        fileTree(dir: "idl", include: '**/*proto').each { File file ->
+            def fileDir   = file.getParentFile()
+            def fileName  = file
+            println "$fileDir => $fileName"
+            def command = "protoc --proto_path=$fileDir " +
+            "--java_out=$projectName/src/main/java " +
+            "--php_out=$projectName/src/main/php " +
+            "--js_out=import_style=commonjs,binary:$projectName/src/main/javascript $fileName"
+            println command
+            println command.execute().text
+        }
+    }
+}
